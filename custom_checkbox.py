@@ -1,6 +1,6 @@
 import flet as ft
 
-class CheckboxItem(ft.UserControl):
+class CheckboxItem(ft.Row):
     def __init__(self, text):
         super().__init__()
 
@@ -12,19 +12,14 @@ class CheckboxItem(ft.UserControl):
         self.delete_button = ft.IconButton(icon=ft.icons.DELETE, on_click=self.delete)
         self.checkbox = ft.Checkbox(on_change=self.checkbox_changed)
 
-        self.controls = ft.Row(
-            [
-                self.checkbox,
-                self.text_view,
-                self.text_edit,
-                self.edit_button,
-                self.save_button,
-                self.delete_button,
-            ]
-        )
-
-    def build(self):
-        return self.controls
+        self.controls = [
+            self.checkbox,
+            self.text_view,
+            self.text_edit,
+            self.edit_button,
+            self.save_button,
+            self.delete_button,
+        ]
 
     def edit(self, e):
         """Ativa modo de edição"""
@@ -47,7 +42,12 @@ class CheckboxItem(ft.UserControl):
 
     def delete(self, e):
         """Remove o item"""
-        self.controls.visible = False
+        self.visible = False
         self.update()
+
+    def checkbox_changed(self, e):
+        """Método chamado quando o checkbox é alterado"""
+        print(f"Checkbox '{self.text}' alterado para {self.checkbox.value}")
+
 
     
