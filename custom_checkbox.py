@@ -50,24 +50,4 @@ class CheckboxItem(ft.UserControl):
         self.controls.visible = False
         self.update()
 
-    def checkbox_changed(self, e):
-        """Marca ou desmarca o checkbox"""
-        estado = "marcado" if self.checkbox.value else "desmarcado"
-        print(f"Checkbox {estado}: {self.text_view.value}")
-        self.update()
-
-def main(page: ft.Page):
-    page.title = "Exemplo de Checkbox"
-
-    def add_task(e):
-        new_item = CheckboxItem(f"Produto {len(task_list.controls) + 1}")
-        task_list.controls.append(new_item)
-        page.update()
-
-    task_list = ft.Column()
-
-    add_button = ft.FloatingActionButton(icon=ft.icons.ADD, on_click=add_task)
-
-    page.add(task_list, add_button)
-
-ft.app(target=main)
+    
